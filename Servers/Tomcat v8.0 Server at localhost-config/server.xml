@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="ServletBasics" path="/ServletBasics" reloadable="true" source="org.eclipse.jst.jee.server:ServletBasics"/><Context docBase="UserDynamicWebApp" path="/UserDynamicWebApp" reloadable="true" source="org.eclipse.jst.jee.server:UserDynamicWebApp"/></Host>
+      <Context docBase="ServletBasics" path="/ServletBasics" reloadable="true" source="org.eclipse.jst.jee.server:ServletBasics"/><Context docBase="UserDynamicWebApp" path="/UserDynamicWebApp" reloadable="true" source="org.eclipse.jst.jee.server:UserDynamicWebApp"/><Context docBase="PreparedStatement" path="/PreparedStatement" reloadable="true" source="org.eclipse.jst.jee.server:PreparedStatement"/><Context docBase="InterServletCommunication" path="/InterServletCommunication" reloadable="true" source="org.eclipse.jst.jee.server:InterServletCommunication"/><Context docBase="ListenerDemo" path="/ListenerDemo" reloadable="true" source="org.eclipse.jst.jee.server:ListenerDemo"/><Context docBase="FiltersDemo" path="/FiltersDemo" reloadable="true" source="org.eclipse.jst.jee.server:FiltersDemo"/></Host>
     </Engine>
   </Service>
 </Server>

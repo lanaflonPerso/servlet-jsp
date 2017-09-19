@@ -13,6 +13,19 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
+	<context-param>
+		<param-name>dbConnectionString</param-name>
+		<param-value>jdbc:mysql://localhost/mylocaldb</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbUserName</param-name>
+		<param-value>root</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbPassWord</param-name>
+		<param-value>chotu123</param-value>
+	</context-param>
+
 	<servlet>
 		<servlet-name>ReadUserServlet</servlet-name>
 		<servlet-class>com.rdayala.user.servlets.ReadUsersServlet</servlet-class>

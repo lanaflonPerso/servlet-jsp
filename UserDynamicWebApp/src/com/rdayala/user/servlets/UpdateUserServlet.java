@@ -6,7 +6,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Enumeration;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,10 +25,21 @@ public class UpdateUserServlet extends HttpServlet {
 	private Connection connection;
 
 	// this gets called ONLY ONCE
-	public void init() {
+	public void init(ServletConfig config) {
 		try {
+
+			ServletContext context = config.getServletContext();
+			
+			Enumeration<String> parameterNames = context.getInitParameterNames();
+			while(parameterNames.hasMoreElements()){
+				String eachName = parameterNames.nextElement();
+				System.out.println("Context param name : " +  eachName);
+				System.out.println("Context param value : " + context.getInitParameter(eachName));
+			}
+			
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/mylocaldb", "root", "chotu123");
+			connection = DriverManager.getConnection(context.getInitParameter("dbConnectionString"),
+					context.getInitParameter("dbUserName"), context.getInitParameter("dbPassWord"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -44,11 +58,12 @@ public class UpdateUserServlet extends HttpServlet {
 
 		try {
 			Statement statement = connection.createStatement();
-			int result = statement.executeUpdate("update user set password = '" + password + "' where email = '" + email + "'");
+			int result = statement
+					.executeUpdate("update user set password = '" + password + "' where email = '" + email + "'");
 			PrintWriter out = response.getWriter();
 			if (result > 0) {
 				out.print("<h1>Password Updated..</h1>");
-			}else {
+			} else {
 				out.print("<h1>Error updating user.</h1>");
 			}
 		} catch (SQLException e) {
