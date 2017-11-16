@@ -22,7 +22,8 @@
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}%>
+	}
+%>
 	
 <%
 
